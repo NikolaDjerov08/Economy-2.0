@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Rocket</title>
+    <link rel="stylesheet" href="rocketBody.css">
+</head>
+<body>
+    <!-- Menu Toggle Button -->
+    <button id="menuToggle">☰ Menu</button>
+
+    <!-- Sidebar Menu -->
+    <div id="menu">
+        <h3>Rocket Controls</h3>
+        <label>Rocket Color:</label>
+        <select id="colorSelect">
+            <option value="gray">Gray</option>
+            <option value="white">White</option>
+            <option value="custom">Custom</option>
+        </select>
+        <input type="color" id="customColor" style="display: none;">
+
+        <button id="toggleRotation">Stop Rotation</button>
+
+        <label>Glow Intensity:</label>
+        <input type="range" id="glowIntensity" min="0" max="2" step="0.1" value="1">
+    </div>
+
+    <!-- Three.js Canvas -->
+    <div id="container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="rocketBody.js"></script>
+</body>
+</html>

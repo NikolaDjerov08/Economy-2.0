@@ -1,0 +1,85 @@
+/* General Styles */
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Three.js Canvas */
+#container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Menu Toggle Button */
+#menuToggle {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1001;
+    transition: 0.3s;
+}
+
+#menuToggle:hover {
+    background: #0056b3;
+}
+
+/* Sidebar Menu */
+#menu {
+    position: fixed;
+    top: 0;
+    left: -220px; /* Initially Hidden */
+    width: 200px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+#menu.active {
+    left: 0;
+}
+
+/* Menu Elements */
+#menu h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+#menu label, #menu select, #menu button, #menu input {
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Button Style */
+#menu button {
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+#menu button:hover {
+    background: #0056b3;
+}
+
+/* Custom color picker */
+#customColor {
+    display: none;
+}
