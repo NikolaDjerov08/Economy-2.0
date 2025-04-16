@@ -7,6 +7,35 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 document.getElementById("container").appendChild(renderer.domElement);
+// --- Starfield ---
+const starsGeometry = new THREE.BufferGeometry();
+const starCount = 1000;
+const starPositions = [];
+
+for (let i = 0; i < starCount; i++) {
+    const x = (Math.random() - 0.5) * 100;
+    const y = (Math.random() - 0.5) * 100;
+    const z = -Math.random() * 100; // Behind the rocket
+    starPositions.push(x, y, z);
+}
+
+starsGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starPositions, 3));
+
+const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.5 });
+const stars = new THREE.Points(starsGeometry, starsMaterial);
+scene.add(stars);
+
+// --- Rocket shadow (fake soft shadow) ---
+const shadowGeometry = new THREE.CircleGeometry(1.5, 32);
+const shadowMaterial = new THREE.MeshBasicMaterial({
+    color: 0x000000,
+    opacity: 0.3,
+    transparent: true
+});
+const shadow = new THREE.Mesh(shadowGeometry, shadowMaterial);
+shadow.rotation.x = -Math.PI / 2;
+shadow.position.y = -3;
+scene.add(shadow);
 
 // Function to create striped texture dynamically
 function createStripedTexture(color) {
@@ -27,6 +56,34 @@ function createStripedTexture(color) {
     }
 
     return new THREE.CanvasTexture(canvas);
+}
+// --- Add flame under the rocket ---
+const flameGeometry = new THREE.ConeGeometry(0.5, 1.5, 32);
+const flameMaterial = new THREE.MeshBasicMaterial({ color: 0xff6600, transparent: true, opacity: 0.7 });
+const flame = new THREE.Mesh(flameGeometry, flameMaterial);
+flame.position.y = -3.5;
+flame.rotation.x = Math.PI;
+scene.add(flame);
+
+// Flame flicker animation
+let flickerTime = 0;
+
+// Update animate function to flicker flame
+function animate() {
+    requestAnimationFrame(animate);
+
+    if (rotating) rocketBody.rotation.y += 0.01;
+
+    // Flicker effect (scale pulse)
+    flickerTime += 0.05;
+    const scale = 1 + Math.sin(flickerTime) * 0.1;
+    flame.scale.set(scale, scale, scale);
+    // Slowly move stars toward camera
+stars.position.z += 0.05;
+if (stars.position.z > 0) {
+    stars.position.z = -100; // Reset position
+}
+    renderer.render(scene, camera);
 }
 
 // Rocket body
