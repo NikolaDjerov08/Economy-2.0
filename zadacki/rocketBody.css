@@ -1,85 +1,99 @@
-/* General Styles */
+/* Basic Reset */
 body {
     margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #ffffff;
     overflow: hidden;
-    font-family: Arial, sans-serif;
+    animation: fadeIn 1s ease-in;
 }
 
-/* Three.js Canvas */
+/* Rocket container */
 #container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+/* Toggle visibility */
+#menu.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
 }
 
-/* Menu Toggle Button */
+#menu {
+    opacity: 1;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Style the toggle button */
 #menuToggle {
     position: absolute;
-    top: 15px;
-    left: 15px;
-    background: #007bff;
+    top: 20px;
+    left: 20px;
+    z-index: 11;
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #444;
     color: white;
     border: none;
-    padding: 10px 15px;
-    font-size: 18px;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 5px;
-    z-index: 1001;
-    transition: 0.3s;
+    transition: background 0.3s ease;
 }
 
 #menuToggle:hover {
-    background: #0056b3;
+    background-color: #666;
 }
 
-/* Sidebar Menu */
+/* Top-right menu */
 #menu {
-    position: fixed;
-    top: 0;
-    left: -220px; /* Initially Hidden */
-    width: 200px;
-    height: 100%;
+    position: absolute;
+    top: 20px;
+    right: 20px;
     background: rgba(255, 255, 255, 0.95);
-    padding: 15px;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-    transition: left 0.3s ease-in-out;
-    z-index: 1000;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    transition: all 0.3s ease;
 }
 
-#menu.active {
-    left: 0;
-}
-
-/* Menu Elements */
-#menu h3 {
-    margin: 0 0 10px;
-    font-size: 18px;
-}
-
-#menu label, #menu select, #menu button, #menu input {
-    width: 100%;
-    margin: 5px 0;
-    padding: 8px;
-    font-size: 14px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-/* Button Style */
-#menu button {
-    background: #007bff;
-    color: white;
-    cursor: pointer;
+/* Menu button styles */
+#menu button, #menu select, #menu input[type="color"] {
+    margin: 6px 0;
+    padding: 8px 12px;
     border: none;
+    border-radius: 6px;
+    background-color: #eee;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
 }
 
 #menu button:hover {
-    background: #0056b3;
+    background-color: #ddd;
+    box-shadow: 0 0 8px rgba(255, 100, 100, 0.5);
+}
+
+#menu select {
+    width: 100%;
 }
 
 /* Custom color picker */
 #customColor {
     display: none;
+    margin-top: 6px;
+    width: 100%;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
