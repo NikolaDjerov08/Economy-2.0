@@ -35,7 +35,7 @@ body {
     z-index: 11;
     padding: 10px 15px;
     font-size: 14px;
-    background-color: #444;
+    background-color: #0e012b;
     color: white;
     border: none;
     border-radius: 8px;
@@ -44,7 +44,7 @@ body {
 }
 
 #menuToggle:hover {
-    background-color: #666;
+    background-color: #584c4c;
 }
 
 /* Top-right menu */
